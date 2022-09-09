@@ -1,3 +1,4 @@
+import ImageScroller from 'react-image-scroller';
 
 function parseTableData(listings) {
 
@@ -9,17 +10,17 @@ function parseTableData(listings) {
       Address: <div>
           <b>{row.price}</b>
           <br/>
-          <a href={row.url} target="_blank">{row.address}</a>
+          <a href={row.url} rel="noreferrer" target="_blank">{row.address}</a>
           <br/>
-          <img class="Display__icons" src="/bed.png"/> {row.features.bedrooms}
-          <img class="Display__icons" src="/bath.png"/> {row.features.bathrooms}
-          <img class="Display__icons" src="/car.png"/> {row.features.parkingSpaces}
+          <img alt="bed icon" class="Display__icons" src="/bed.png"/> {row.features.bedrooms}
+          <img alt="bath icon" class="Display__icons" src="/bath.png"/> {row.features.bathrooms}
+          <img alt="car icon" class="Display__icons" src="/car.png"/> {row.features.parkingSpaces}
           <br/>
           LandSize: {row.landsize}
           <br/>
           Type: {row.type}
         </div>,
-      MainImage: <img class="Main__image" src={row.mainImage}/>,
+      Images: getImagesList(row.mainImage, row.images),
       School: <div>
           <h3>Primary School</h3>
             <b>{row.primarySchool.school}</b><br/>
@@ -54,6 +55,19 @@ function getAdditionlInfo(row, type) {
       ICSEA: {row.secondarySchool.ICSEA}
     </div>)
   }
+}
+
+function getImagesList(main, images) {
+  return (
+    <div class="Scroller__image">
+    <ImageScroller>
+      <img src={main} class="Main__image" alt="main property" />
+      {images.map((image, index) => {
+        return (<img src={image} class="Main__image" alt={index} />)
+      })}
+    </ImageScroller>
+    </div>
+  )
 }
 
 export {

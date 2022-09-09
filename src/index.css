@@ -87,6 +87,10 @@ code {
 }
 
 .Main__image {
-  max-height: 400px;
+  max-height: 300px;
   mix-blend-mode: multiply;
+}
+
+.Scroller__image {
+  max-width: 1000px;
 }

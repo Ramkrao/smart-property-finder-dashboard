@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { WithContext as ReactTags } from 'react-tag-input';
 import { Formik } from 'formik'
@@ -11,6 +11,7 @@ import Table from '@anz/table'
 import Text from '@anz/text'
 import AnzTextField from '@anz/text-field'
 import Button from '@anz/button'
+import RadioGroup from '@anz/radio-group'
 
 import { parseTableData } from './Utils'
 
@@ -22,9 +23,11 @@ import { PropertyTableAppearance, PropertyTableHead, Delimiters } from './Consta
 // Yup Initial values for the form
 const initVals = {
     suburbs: '',
-    minPrice: '0',
-    maxPrice: '500000',
-    propertyType: 'unit'
+    minPrice: '700000',
+    maxPrice: '1100000',
+    propertyType: 'house',
+    filterPrimary: false,
+    filterSecondary: false
 }
 
 // Form fields validation rules
@@ -153,6 +156,37 @@ const HomeComponent = () => {
             {errors.propertyType && touched.propertyType ? (
               <p style={{color:'red', fontSize:'12px'}}>{errors.propertyType}</p>
             ) : null}
+          </AnzCol>
+        </AnzRow>
+        <AnzRow style={{"marginTop": "32px"}}>
+          <AnzCol xs={12} md={3}/>
+          <AnzCol xs={12} md={3}>
+            <RadioGroup
+              name='filterPrimary'
+              onChange={(value) => setFieldValue('filterPrimary', value)}
+              value={values.filterPrimary}
+              type='radio-group'
+              label='Show Top Primary Schools'
+              appearance='button'
+              viewSize='small'
+              id='filterPrimary'
+              information={`Select Yes to show only Top schools`}
+              buttons={[{label: "Yes", value: true}, {label: "No", value: false}]}
+            />
+          </AnzCol>
+          <AnzCol xs={12} md={3}>
+            <RadioGroup
+              name='filterSecondary'
+              onChange={(value) => setFieldValue('filterSecondary', value)}
+              value={values.filterSecondary}
+              type='radio-group'
+              label='Show Top Secondary Schools'
+              appearance='button'
+              viewSize='small'
+              id='filterSecondary'
+              information={`Select Yes to show only Top schools`}
+              buttons={[{label: "Yes", value: true}, {label: "No", value: false}]}
+            />
           </AnzCol>
         </AnzRow>
         <AnzRow style={{"marginTop": "32px"}}>

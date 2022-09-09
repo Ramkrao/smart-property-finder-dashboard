@@ -1,8 +1,8 @@
 const PropertyTableHead = [
   {title: 'Id', sortable: true},
-  {title: 'Address'},
-  {title: 'Main Image'},
-  {title: 'School'},
+  {title: 'Property Details'},
+  {title: 'Images'},
+  {title: 'Schools'},
 ]
 
 const PropertyTableAppearance={
