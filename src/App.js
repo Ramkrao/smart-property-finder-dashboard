@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Fragment} from 'react';
+import Header from '@anz/header'
+import HomeComponent from './LandingPage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter basename='/renganr1/smart-property'>
+      <Fragment>
+        <div className="App">
+          <Header />
+          <div className="Content">
+            <Routes>
+              <Route exact path="/" element={<HomeComponent />} />
+            </Routes>
+          </div>
+        </div>
+      </Fragment>
+    </BrowserRouter>
   );
 }
 
